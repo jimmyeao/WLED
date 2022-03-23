@@ -1,4 +1,5 @@
 #include "wled.h"
+#include "../usermods/Animated_Staircase/Animated_Staircase.h"
 /*
  * Register your v2 usermods here!
  *   (for v1 usermods using just usermod.cpp, you can ignore this file)
@@ -211,4 +212,5 @@ void registerUsermods()
   #ifdef QUINLED_AN_PENTA
   usermods.add(new QuinLEDAnPentaUsermod());
   #endif
+  usermods.add(new Animated_Staircase());
 }
