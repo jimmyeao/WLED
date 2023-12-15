@@ -20,11 +20,16 @@
   #include "../usermods/Temperature/usermod_temperature.h"
 #endif
 
+#ifdef USERMOD_SHT
+#include "../usermods/sht/usermod_sht.h"
+#endif
+
 #ifdef USERMOD_SN_PHOTORESISTOR
   #include "../usermods/SN_Photoresistor/usermod_sn_photoresistor.h"
 #endif
 
 #ifdef USERMOD_PWM_FAN
+  // requires DALLASTEMPERATURE or SHT included before it
   #include "../usermods/PWM_fan/usermod_PWM_fan.h"
 #endif
 
@@ -129,6 +134,10 @@
   #include "../usermods/wizlights/wizlights.h"
 #endif
 
+#ifdef USERMOD_WIREGUARD
+  #include "../usermods/wireguard/wireguard.h"
+#endif
+
 #ifdef USERMOD_WORDCLOCK
   #include "../usermods/usermod_v2_word_clock/usermod_v2_word_clock.h"
 #endif
@@ -161,8 +170,16 @@
   #include "../usermods/ADS1115_v2/usermod_ads1115.h"
 #endif
 
+#ifdef USERMOD_KLIPPER_PERCENTAGE
+  #include "..\usermods\usermod_v2_klipper_percentage\usermod_v2_klipper_percentage.h"
+#endif
+
 #ifdef USERMOD_BOBLIGHT
   #include "../usermods/boblight/boblight.h"
+#endif
+
+#ifdef USERMOD_INTERNAL_TEMPERATURE
+  #include "../usermods/Internal_Temperature_v2/usermod_internal_temperature.h"
 #endif
 
 #if defined(WLED_USE_SD_MMC) || defined(WLED_USE_SD_SPI)
@@ -179,10 +196,6 @@
 
 #ifdef USERMOD_PWM_OUTPUTS
 #include "../usermods/pwm_outputs/usermod_pwm_outputs.h"
-#endif
-
-#ifdef USERMOD_SHT
-#include "../usermods/sht/usermod_sht.h"
 #endif
 
 
@@ -302,6 +315,10 @@ void registerUsermods()
   usermods.add(new WizLightsUsermod());
   #endif
 
+  #ifdef USERMOD_WIREGUARD
+  usermods.add(new WireguardUsermod());
+  #endif
+
   #ifdef USERMOD_WORDCLOCK
   usermods.add(new WordClockUsermod());
   #endif
@@ -334,6 +351,10 @@ void registerUsermods()
   usermods.add(new ADS1115Usermod());
   #endif
 
+  #ifdef USERMOD_KLIPPER_PERCENTAGE
+  usermods.add(new klipper_percentage());
+  #endif
+
   #ifdef USERMOD_BOBLIGHT
   usermods.add(new BobLightUsermod());
   #endif
@@ -348,5 +369,9 @@ void registerUsermods()
 
   #ifdef USERMOD_SHT
   usermods.add(new ShtUsermod());
+  #endif
+
+  #ifdef USERMOD_INTERNAL_TEMPERATURE
+  usermods.add(new InternalTemperatureUsermod());
   #endif
 }
