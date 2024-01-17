@@ -381,4 +381,5 @@ void registerUsermods()
   #ifdef USERMOD_LDR_DUSK_DAWN
   usermods.add(new LDR_Dusk_Dawn_v2());
   #endif
+  usermods.add(new Animated_Staircase());
 }
